@@ -1,0 +1,6 @@
+
+## Notes
+- The startup guard strips disallowed IPs from the pool, DoH templates, and `trusted_dns_list.txt`.
+- To block more resolvers, edit `DISALLOWED_IPS` in `ipvtri_dns_super_changer_PRO.py`.
+
+**Privacy note:** Google Public DNS removed by default.
