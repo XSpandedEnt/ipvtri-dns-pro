@@ -1,0 +1,36 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create artifact zip
+        run: |
+          zip -r IPvTri_DNS_PRO_${{ github.ref_name }}.zip \
+            ipvtri_dns_super_changer_PRO.py \
+            Run_IPvTri_DNS_PRO_SHELL.bat \
+            Run_IPvTri_DNS_PRO.bat \
+            Run_IPvTri_DNS_PRO_SAFE.bat \
+            diagnose_ipvtri.bat \
+            install_ipvtri_dns_PRO.bat \
+            uninstall_ipvtri_dns_PRO.bat \
+            install_optional_deps.bat \
+            trusted_dns_list.txt \
+            requirements-optional.txt \
+            README.md \
+            INSTRUCTIONS_NO_GOOGLE_GUARDED.md \
+            .gitignore
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: IPvTri_DNS_PRO_${{ github.ref_name }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
