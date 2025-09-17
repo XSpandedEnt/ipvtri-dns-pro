@@ -1,0 +1,6 @@
+logs/
+*.enc
+*.zip
+*.bak
+.DS_Store
+Thumbs.db
